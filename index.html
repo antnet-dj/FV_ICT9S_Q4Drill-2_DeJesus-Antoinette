@@ -57,32 +57,36 @@
 </div>
 
 <script>
-function checkHeatIndex() {
-    let temp = parseFloat(document.getElementById("temp").value);
-    let humidity = parseFloat(document.getElementById("humidity").value);
+function teamRank() {
+    var temp = parseFloat(document.getElementById("temp").value);
+    var humid = parseFloat(document.getElementById("humidity").value);
 
-    let heatIndex = temp + (0.33 * humidity) - 4;
+    var HeatIndex = temp + (0.33 * humid) - 4;
+    var message = "";
 
-    let status = "";
+    switch (true) {
+        case (HeatIndex <= 27):
+            message = "Comfortable / Cool";
+            break;
 
-    if (heatIndex <= 27) {
-        status = "Comfortable / Cool";
-    } 
-    else if (heatIndex >= 28 && heatIndex <= 32) {
-        status = "Warm";
-    } 
-    else if (heatIndex >= 33 && heatIndex <= 37) {
-        status = "Hot";
-    } 
-    else if (heatIndex >= 38 && heatIndex <= 41) {
-        status = "Very Hot / Caution";
-    } 
-    else {
-        status = "Extreme Heat / Danger";
+        case (HeatIndex >= 28 && HeatIndex <= 32):
+            message = "Warm";
+            break;
+
+        case (HeatIndex >= 33 && HeatIndex <= 37):
+            message = "Hot";
+            break;
+
+        case (HeatIndex >= 38 && HeatIndex <= 41):
+            message = "Very Hot / Caution";
+            break;
+
+        default:
+            message = "Extreme Heat / Danger";
     }
 
     document.getElementById("result").innerHTML =
-        "Heat Index: " + heatIndex.toFixed(2) + "°C<br>Status: " + status;
+        "Heat Index: " + HeatIndex.toFixed(2) + "°C<br>Status: " + message;
 }
 </script>
 
